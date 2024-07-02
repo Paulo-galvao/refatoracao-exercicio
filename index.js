@@ -1,5 +1,13 @@
 let notas = [7.5, 8.0, 6.0, 9.5, 5.0, 8.5, 7.0, 10.0, 6.5, 9.0];
 
+function mostrarMedia(listaDeNotas) {
+    let soma = 0;
+    listaDeNotas.forEach(nota => {
+        soma += nota;
+    })
+    return soma / listaDeNotas.length;
+}
+
 function mostrarMaiorNota(listaDeNotas) {
     let maiorNota = listaDeNotas[0];
     for (let i = 0; i < listaDeNotas.length; i++) {
@@ -23,12 +31,10 @@ function mostrarMenorNota(listaDeNotas) {
 function mostrarAprovados(listaDeNotas) {
     const lista = [];
     for (let i = 0; i < listaDeNotas.length; i++) {
-        if(notas[i] >= 6) {
-            lista.push(notas[i]);
-            
+        if(notas[i] >= mostrarMedia(listaDeNotas)) {
+            lista.push(notas[i]);            
         }
-    }
-    
+    }    
     return lista;
     
 }
@@ -36,12 +42,10 @@ function mostrarAprovados(listaDeNotas) {
 function mostrarReprovados(listaDeNotas) {
     const lista = [];
     for (let i = 0; i < listaDeNotas.length; i++) {
-        if(notas[i] < 6) {
-            lista.push(notas[i]);
-            
+        if(notas[i] < mostrarMedia(listaDeNotas)) {
+            lista.push(notas[i]);            
         }
-    }
-    
+    }    
     return lista;
 }
 
@@ -61,9 +65,10 @@ function contarReprovados(listaDeNotas) {
     return reprovados;
 }
 
-console.log(`Maior nota: ${mostrarMaiorNota(notas)}`);
-console.log(`Menor nota: ${mostrarMenorNota(notas)}`);
-console.log(`Notas acima da média: ${mostrarAprovados(notas)}`);
-console.log(`Total de aprovados: ${contarAprovados(notas)}`);
-console.log(`Notas abaixo da média: ${mostrarReprovados(notas)}`);
-console.log(`Total de reprovados: ${contarReprovados(notas)}`);
+console.log(`Média entre as notas ${mostrarMedia(notas)}
+Maior nota: ${mostrarMaiorNota(notas)}
+Menor nota: ${mostrarMenorNota(notas)}
+Notas acima da média: ${mostrarAprovados(notas)}
+Total de aprovados: ${contarAprovados(notas)}
+Notas abaixo da média: ${mostrarReprovados(notas)}
+Total de reprovados: ${contarReprovados(notas)}`);
